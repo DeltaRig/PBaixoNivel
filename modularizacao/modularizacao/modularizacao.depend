@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1408584337 source:/home/PORTOALEGRE/10049190/progswb/modularizacao/main.c
+	<stdio.h>
+	"bibfunc.h"
+
+1408584588 /home/PORTOALEGRE/10049190/progswb/modularizacao/bibfunc.h
+
+1408584457 source:/home/PORTOALEGRE/10049190/progswb/modularizacao/bibfunc.c
+	"bibfunc.h"
+
