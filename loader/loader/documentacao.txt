@@ -1,0 +1,25 @@
+/**
+ * Desenvolvedores: Daniela Rigoli (18110549) (128) e Lucas Salbego (17202261) (138)
+ * Programação de Baixo Nível
+ * Professor: Marcelo Cohen e Alezandre Agustini
+*/
+
+Objetivo:
+    
+Usar caracteres para produzir desenhos (ASCII Art), assim explorando os conceitos de programacao em C. 
+E retornando como saída um arquivo HTML com a representação a ser visualizada no browser.
+
+
+Sobre o programa:
+
+1. Recebe uma imagem JPEG baseline e utiliza structs para armazenar as informações dela.
+2. Converte para escalas de cinza, onde é possível ver a imagem em "british_gray.bmp".
+3. Utiliza um sistema de blocos de pixels gerando a média dos tons de cinza.
+4. Para cada bloco é definido um caracter usando os tons do passo 3.
+5. Cria um novo arquivo html se necessário, onde é passada a representação ASCII.
+Nela também é passado parametros de cor de fundo para o navegador, tamanho e tipo da fonte.
+
+
+Resolução:
+- Deixamos a parte do código onde poderia acontecer a redução da imagem comentada
+pois 
