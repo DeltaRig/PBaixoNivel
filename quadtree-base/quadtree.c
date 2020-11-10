@@ -41,8 +41,10 @@ QuadNode* geraQuadtree(Img* pic, float minDetail)
     // Implemente aqui o algoritmo que gera a quadtree, retornando o nodo raiz
     //////////////////////////////////////////////////////////////////////////
 
+    
+
 // COMENTE a linha abaixo quando seu algoritmo ja estiver funcionando
-// Caso contrario, ele ira gerar uma arvore de teste com 3 nodos
+// Caso contrario, ele ira gerar uma arvore de teste
 
 #define DEMO
 #ifdef DEMO
