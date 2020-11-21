@@ -1,6 +1,7 @@
 #include "quadtree.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include<stdbool.h>
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -24,6 +25,65 @@ QuadNode* newNode(int x, int y, int width, int height)
     return n;
 }
 
+bool eCheio(Img* pic, QuadNode* n){
+    RGB (*pixels)[pic->width] = (RGB(*)[pic->width]) pic->img;
+    int somaR = 0;
+    int somaG = 0;
+    int somaB = 0;
+    for(int i = n->x; i < n->width; i++){
+        for(int j = n->y; j < n->width; j++){
+            somaR += pixels[i][j].r;
+            somaG += pixels[i][j].g;
+            somaB += pixels[i][j].b;
+        }
+    }
+
+    int media = 
+
+}
+
+QuadNode* quadTreeRec(QuadNode* n);
+QuadNode* quadTreeRec(QuadNode* n){
+    
+    QuadNode* nw = newNode(0,0,n->width/2,n->height/2);
+    nw->status = CHEIO;
+    nw->color[0] = 0;
+    nw->color[1] = 0;
+    nw->color[2] = 255;
+
+    // Aponta do pai para o nodo nw
+    n->NW = nw;
+    
+    QuadNode* se = newNode(n->width/2,n->width/2,n->width/2,n->height/2);
+    
+    se->status = CHEIO;
+    se->color[0] = 0;
+    se->color[1] = 255;
+    se->color[2] = 0;
+
+    // Aponta do pai para o nodo nw
+    n->SE = se;
+
+    QuadNode* sw = newNode(0,n->width/2,n->width/2,n->height/2);
+    sw->status = CHEIO;
+    sw->color[0] = 255;
+    sw->color[1] = 0;
+    sw->color[2] = 0;
+
+    // Aponta do pai para o nodo nw
+    n->SW = sw;
+
+    QuadNode* ne = newNode(n->width/2,0,n->width/2,n->height/2);
+    ne->status = CHEIO;
+    ne->color[0] = 100;
+    ne->color[1] = 100;
+    ne->color[2] = 100;
+
+    // Aponta do pai para o nodo nw
+    n->NE = ne;
+
+}
+
 QuadNode* geraQuadtree(Img* pic, float minDetail)
 {
     // Converte o vetor RGB para uma MATRIZ que pode acessada por pixels[linha][coluna]
@@ -40,13 +100,19 @@ QuadNode* geraQuadtree(Img* pic, float minDetail)
     //////////////////////////////////////////////////////////////////////////
     // Implemente aqui o algoritmo que gera a quadtree, retornando o nodo raiz
     //////////////////////////////////////////////////////////////////////////
-
     
+    QuadNode* raiz = newNode(0,0,width,height);
+    raiz->status = PARCIAL;
+    raiz->color[0] = 0;
+    raiz->color[1] = 0;
+    raiz->color[2] = 255;
+
+    quadTreeRec(raiz);
 
 // COMENTE a linha abaixo quando seu algoritmo ja estiver funcionando
 // Caso contrario, ele ira gerar uma arvore de teste
 
-#define DEMO
+//#define DEMO
 #ifdef DEMO
 
     /************************************************************/
@@ -59,16 +125,17 @@ QuadNode* geraQuadtree(Img* pic, float minDetail)
     raiz->color[1] = 0;
     raiz->color[2] = 255;
 
-    QuadNode* nw = newNode(width/2,0,width/2,height/2);
-    nw->status = PARCIAL;
+    QuadNode* nw = newNode(0,0,width/2,height/2);
+    nw->status = CHEIO;
     nw->color[0] = 0;
     nw->color[1] = 0;
     nw->color[2] = 255;
 
     // Aponta da raiz para o nodo nw
     raiz->NW = nw;
-
-    QuadNode* se = newNode(0,width/2,height/2,height/2);
+    
+    QuadNode* se = newNode(width/2,width/2,width/2,height/2);
+    
     se->status = CHEIO;
     se->color[0] = 0;
     se->color[1] = 255;
@@ -77,23 +144,23 @@ QuadNode* geraQuadtree(Img* pic, float minDetail)
     // Aponta da raiz para o nodo nw
     raiz->SE = se;
 
-    QuadNode* nw2 = newNode(width/2+width/4,0,width/4,height/4);
-    nw2->status = CHEIO;
-    nw2->color[0] = 100;
-    nw2->color[1] = 100;
-    nw2->color[2] = 100;
+    QuadNode* sw = newNode(0,width/2,width/2,height/2);
+    sw->status = CHEIO;
+    sw->color[0] = 255;
+    sw->color[1] = 0;
+    sw->color[2] = 0;
 
-    // Aponta do nodo nw para o nodo nw2
-    nw->NW = nw2;
+    // Aponta da raiz para o nodo nw
+    raiz->SW = sw;
 
-    QuadNode* se2 = newNode(width/2,width/4,width/4,height/4);
-    se2->status = CHEIO;
-    se2->color[0] = 255;
-    se2->color[1] = 0;
-    se2->color[2] = 0;
+    QuadNode* ne = newNode(width/2,0,width/2,height/2);
+    ne->status = CHEIO;
+    ne->color[0] = 100;
+    ne->color[1] = 100;
+    ne->color[2] = 100;
 
-    // Aponta do nodo nw para o nodo nw2
-    nw->SE = se2;
+    // Aponta da raiz para o nodo nw
+    raiz->NE = ne;
 
 #endif
     // Finalmente, retorna a raiz da árvore
@@ -187,4 +254,3 @@ void drawNode(QuadNode* n)
     }
     // Nodos vazios não precisam ser desenhados... nem armazenados!
 }
-
