@@ -39,9 +39,9 @@ void mediaDetalhe(Img* pic, QuadNode* n, float* result){
         }
     }
     //calcula as médias
-    result[0] = somaR / n->width * n->height; 
-    result[1] = somaG / n->width * n->height;
-    result[2] = somaB / n->width * n->height;
+    result[0] = somaR / (n->width * n->height); 
+    result[1] = somaG / (n->width * n->height);
+    result[2] = somaB / (n->width * n->height);
 
     for(int i = n->x; i < n->width; i++){
         for(int j = n->y; j < n->height; j++){
