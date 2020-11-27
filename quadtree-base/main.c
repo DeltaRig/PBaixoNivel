@@ -96,12 +96,12 @@ void keyboard(unsigned char key, int x, int y)
     }
     // '=' aumenta o nível de detalhe
     if(key=='=') {
-        detalhe++;
+        detalhe+=5;
         changed=1;
     }
     // '-' reduz o nível de detalhe
     if(key=='-') {
-        detalhe--;
+        detalhe-=5;
         changed=1;
     }
 

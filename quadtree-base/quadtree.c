@@ -31,11 +31,11 @@ void mediaDetalhe(Img* pic, QuadNode* n, float* result){
     float somaR = 0, somaG = 0, somaB = 0;
     float distR = 0, distG = 0, distB = 0;
 
-    for(int i = n->x; i < n->width; i++){
-        for(int j = n->y; j < n->height; j++){
-            somaR += pixels[i][j].r;
-            somaG += pixels[i][j].g;
-            somaB += pixels[i][j].b;
+    for(int i = n->x; i < n->x + n->width; i++){
+        for(int j = n->y; j < n->y + n->height; j++){
+            somaR += pixels[j][i].r;
+            somaG += pixels[j][i].g;
+            somaB += pixels[j][i].b;
         }
     }
     //calcula as médias
@@ -43,16 +43,18 @@ void mediaDetalhe(Img* pic, QuadNode* n, float* result){
     result[1] = somaG / (n->width * n->height);
     result[2] = somaB / (n->width * n->height);
 
-    for(int i = n->x; i < n->width; i++){
-        for(int j = n->y; j < n->height; j++){
-            distR += (pixels[i][j].r - result[0]) * (pixels[i][j].r - result[0]);
-            distG += (pixels[i][j].g - result[1]) * (pixels[i][j].g - result[1]);
-            distB += (pixels[i][j].b - result[2]) * (pixels[i][j].b - result[2]);
+    float somaTotal = 0;
+    for(int i = n->x; i < n->x + n->width; i++){
+        for(int j = n->y; j < n->y + n->height; j++){
+            distR = (pixels[j][i].r - result[0]) * (pixels[j][i].r - result[0]);
+            distG = (pixels[j][i].g - result[1]) * (pixels[j][i].g - result[1]);
+            distB = (pixels[j][i].b - result[2]) * (pixels[j][i].b - result[2]);
+            somaTotal += sqrt(distR + distG + distB);
         }
     }
 
-    result[3] = sqrt(distR + distG + distB);
-    printf("\nO resultado do nivel de detalhamento foi: %f\n", result[3]);
+    result[3] = somaTotal / (n->width * n->height);
+    //printf("\nO resultado do nivel de detalhamento foi: %f\n", result[3]);
 
 }
 
@@ -60,9 +62,9 @@ void quadTreeRec(QuadNode* n, float minDetail, Img* pic);
 void quadTreeRec(QuadNode* n, float minDetail, Img* pic){
     
     if(n->status == PARCIAL){
+
         float result[4];
-        printf("\nMeus quatro quadNodes:");
-        QuadNode* nw = newNode(0,0,n->width/2,n->height/2);
+        QuadNode* nw = newNode(n->x,n->y,n->width/2,n->height/2);
         mediaDetalhe(pic, nw, result);
         if(result[3] <= minDetail){
             nw->status = CHEIO;
@@ -76,7 +78,7 @@ void quadTreeRec(QuadNode* n, float minDetail, Img* pic){
         // Aponta do pai para o nodo nw
         n->NW = nw;
         
-        QuadNode* se = newNode(n->width/2,n->width/2,n->width/2,n->height/2);
+        QuadNode* se = newNode(n->width/2 + n->x,n->width/2 + n->y,n->width/2,n->height/2);
         mediaDetalhe(pic, se, result);
         if(result[3] <= minDetail){
             se->status = CHEIO;
@@ -90,7 +92,7 @@ void quadTreeRec(QuadNode* n, float minDetail, Img* pic){
         // Aponta do pai para o nodo nw
         n->SE = se;
 
-        QuadNode* sw = newNode(0,n->width/2,n->width/2,n->height/2);
+        QuadNode* sw = newNode(n->x,n->width/2 + n->y,n->width/2,n->height/2);
         mediaDetalhe(pic, sw, result);
         if(result[3] <= minDetail){
             sw->status = CHEIO;
@@ -104,7 +106,7 @@ void quadTreeRec(QuadNode* n, float minDetail, Img* pic){
         // Aponta do pai para o nodo nw
         n->SW = sw;
 
-        QuadNode* ne = newNode(n->width/2,0,n->width/2,n->height/2);
+        QuadNode* ne = newNode(n->width/2 + n->x,n->y,n->width/2,n->height/2);
          mediaDetalhe(pic, ne, result);
         if(result[3] <= minDetail){
             ne->status = CHEIO;
@@ -133,8 +135,8 @@ QuadNode* geraQuadtree(Img* pic, float minDetail)
 
     // Veja como acessar os primeiros 10 pixels da imagem, por exemplo:
     int i;
-    for(i=0; i<10; i++)
-        printf("%02X %02X %02X\n",pixels[0][i].r,pixels[1][i].g,pixels[2][i].b);
+    //for(i=0; i<10; i++)
+    //    printf("%02X %02X %02X\n",pixels[0][i].r,pixels[1][i].g,pixels[2][i].b);
 
     int width = pic->width;
     int height = pic->height;
