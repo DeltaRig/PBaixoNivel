@@ -9,6 +9,8 @@ Foi uma disciplina onde vimos sobre ponteiros em C. Nas pastas Basico, DesafioPo
 # Trabalho 1 - Gerador de ASCII Art
 [Enunciado do Trabalho 1](https://mflash.github.io/progswb2/trab/t1-202-hjb7fyhdc/)
 
+[Vídeo auxiliar](https://www.youtube.com/watch?v=6iR0EkyR85c&feature=emb_title)
+
 ### 1 Introdução
 O uso de caracteres da tabela ASCII para produzir desenhos não é uma idéia recente: vem de tempos longínquos, onde os dispositivos de saída eram monitores monocromáticos e impressoras matriciais ou de linha. Mais recentemente, se tornou uma forma de "arte" - daí o termo ASCII Art. Ou seja, imagens criadas exclusivamente com o uso de caracteres da tabela ASCII.
 O objetivo deste trabalho é explorar os conceitos de programação C vistos em aula, criando um programa capaz de produzir a representação de uma imagem qualquer em ASCII. A saída do programa será na forma de um arquivo HTML, que poderá ser visualizado no browser. Se você estava em outro planeta nos últimos anos e nunca viu isso, há diversos serviços na rede que fazem esse tipo de conversão:
@@ -117,6 +119,8 @@ Finalmente, deve-se fechar o corpo da página e o HTML em si:
 ```
 
 # Trabalho 2 - Compressão de Imagens por Quadtree
+
+[Enunciado do trabalho](https://mflash.github.io/progswb2/trab/t2-202-isvdi87v63gfrvb/)
 
 ### 1 Introdução
 Ha diversas técnicas que podem ser usadas para a compressão de imagens. As mais conhecidas são os algoritmos implementados no padrão JPEG ou PNG, por exemplo. Porém, há outras técnicas menos conhecidas: uma delas é baseada no uso de uma árvore para a representação da imagem. Essa técnica, conhecida como representação através de subdivisão por ocupação espacial, utiliza uma estrutura de dados denominada quadtree, pois é uma árvore onde cada nodo pode ter zero ou quatro "filhos".
