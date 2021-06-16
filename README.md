@@ -160,7 +160,7 @@ A última imagem mostra o resultado final, ou seja, ao chegar no nível de detal
 
 Finalmente, a figura abaixo apresenta um exemplo de árvore gerada, para uma imagem simples:
 
-![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/qe.png "Title") 
+![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/qe.PNG "Title") 
 
 #### 2.2 Acessando os pixels da imagem
 
