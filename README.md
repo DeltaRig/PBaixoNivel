@@ -2,7 +2,7 @@
 
 Professores da disciplina: Alexandre Augustine e Marcelo Cohen
 
-Dupla nos trabalhos: Lucas Salbego
+Dupla nos trabalhos: Lucas Pereira Salbego <Lucas.Salbego99@edu.pucrs.br>
 
 Foi uma disciplina onde vimos sobre ponteiros em C. Nas pastas Basico, DesafioPont, Ponteiros contém alguns códigos em C para conhecer a linguagem e conhecer sobre ponteiros.
 
