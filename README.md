@@ -152,7 +152,7 @@ As próximas seções explicam como realizar as etapas.
 
 O processo de geração da quadtree é um algoritmo recursivo: a raiz da árvore representa toda a região da imagem. Se essa região não tem muitos detalhes, o processo se encerra. Caso contrário, são gerados nodos filhos para cada subregião: superior direita (NW), superior esquerda (NE), inferior direita (SW) e inferior esquerda (SE). E o algoritmo é novamente aplicado para cada uma delas. Para entender o processo, veja a sequência de figuras abaixo, que mostra o resultado ao algoritmo para 1, 2, 3, 4 e 5 níveis na árvore:
 
-![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/geraQ.png "Title") 
+![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/geraQ.PNG "Title") 
 
 A última imagem mostra o resultado final, ou seja, ao chegar no nível de detalhe desejado. Esse nível é especificado através de um valor, que deve ser comparado com o nível de detalhe da região (ver seção 2.2): se este último for inferior ou igual ao valor informado, significa que o nível desejado foi atingido e o processo se encerra. Note que regiões com apenas uma cor têm nível de detalhe igual a zero.
 
@@ -192,7 +192,7 @@ Descobrir a cor média da região (média de todas as cores dos pixels da regiã
 
 Calcular a diferença entre cada pixel da região e essa cor média. Isso pode ser feito através da distância euclideana entre cada cor (Rp,Gp,Bp) e a cor média (Rm,Gm,Bm) , imaginando que as componentes R, G e B são coordenadas espaciais:
 
-![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/qc.png "Title") 
+![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/qc.PNG "Title") 
 
 Acumular essa diferença ao longo de toda a região e calcular a diferença média no final. Para tanto, essa soma de diferenças precisa ser dividida pela área em pixels da região.
 
