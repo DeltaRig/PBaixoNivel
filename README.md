@@ -19,7 +19,7 @@ O objetivo deste trabalho é explorar os conceitos de programação C vistos em 
 
 O resultado pode ser visto na figura 1:
 
-![Alt text](https://github.com/DeltaRig/PBaixoNivel/tree/master/imagens/flower.jpg "Title") ![Alt text](https://github.com/DeltaRig/PBaixoNivel/tree/master/imagens/flower_ascii.jpg "Title")
+![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/flower.jpg "Title") ![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/flower_ascii.jpg "Title")
 
 ### 2 Funcionamento
 Ao ser iniciado, o programa deve solicitar o nome de um arquivo de imagem e carregá-lo (ou obter o nome por parâmetros de linha de comando).
@@ -47,7 +47,7 @@ As próximas seções dão algumas dicas de como realizar certas etapas.
 Uma imagem é geralmente representada por uma matriz de pontos (pixels) onde cada cor é definida por 3 componentes: vermelho (R), verde (G) e azul (B). Cada uma dessas componentes usualmente é codificada em um byte, o que produz 3 bytes por pixel (24 bits) - ou seja, 16 milhões de possíveis cores. Em outras palavras, as intensidades (R, G, B) variam de 0 a 255, onde 0 é escuro e 255 é claro.
 Veja abaixo como diversas cores são representadas nesse formato - cada cor está expressa pelas componentes RGB em hexadecimal.
 
-![Alt text](https://github.com/DeltaRig/PBaixoNivel/tree/master/imagens/hex-colors.jpg "Title") ![Alt text](https://github.com/DeltaRig/PBaixoNivel/tree/master/imagens/rgbcolors.jpg "Title") 
+![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/hex-colors.jpg "Title") ![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/rgbcolors.jpg "Title") 
 
 O código fornecido define duas structs: uma para representar um pixel e outra para representar a imagem inteira. Após a leitura da imagem, os pixels estarão disponíveis no vetor pic.img
 
@@ -152,15 +152,15 @@ As próximas seções explicam como realizar as etapas.
 
 O processo de geração da quadtree é um algoritmo recursivo: a raiz da árvore representa toda a região da imagem. Se essa região não tem muitos detalhes, o processo se encerra. Caso contrário, são gerados nodos filhos para cada subregião: superior direita (NW), superior esquerda (NE), inferior direita (SW) e inferior esquerda (SE). E o algoritmo é novamente aplicado para cada uma delas. Para entender o processo, veja a sequência de figuras abaixo, que mostra o resultado ao algoritmo para 1, 2, 3, 4 e 5 níveis na árvore:
 
-![Alt text](https://github.com/DeltaRig/PBaixoNivel/tree/master/imagens/geraQ.png "Title") 
+![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/geraQ.png "Title") 
 
 A última imagem mostra o resultado final, ou seja, ao chegar no nível de detalhe desejado. Esse nível é especificado através de um valor, que deve ser comparado com o nível de detalhe da região (ver seção 2.2): se este último for inferior ou igual ao valor informado, significa que o nível desejado foi atingido e o processo se encerra. Note que regiões com apenas uma cor têm nível de detalhe igual a zero.
 
-![Alt text](https://github.com/DeltaRig/PBaixoNivel/tree/master/imagens/qt6.png "Title") 
+![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/qt6.png "Title") 
 
 Finalmente, a figura abaixo apresenta um exemplo de árvore gerada, para uma imagem simples:
 
-![Alt text](https://github.com/DeltaRig/PBaixoNivel/tree/master/imagens/qe.png "Title") 
+![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/qe.png "Title") 
 
 #### 2.2 Acessando os pixels da imagem
 
@@ -192,7 +192,7 @@ Descobrir a cor média da região (média de todas as cores dos pixels da regiã
 
 Calcular a diferença entre cada pixel da região e essa cor média. Isso pode ser feito através da distância euclideana entre cada cor (Rp,Gp,Bp) e a cor média (Rm,Gm,Bm) , imaginando que as componentes R, G e B são coordenadas espaciais:
 
-![Alt text](https://github.com/DeltaRig/PBaixoNivel/tree/master/imagens/qc.png "Title") 
+![Alt text](https://github.com/DeltaRig/PBaixoNivel/blob/master/imagens/qc.png "Title") 
 
 Acumular essa diferença ao longo de toda a região e calcular a diferença média no final. Para tanto, essa soma de diferenças precisa ser dividida pela área em pixels da região.
 
